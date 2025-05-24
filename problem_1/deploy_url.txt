@@ -1,1 +1,1 @@
-
+k8s-wise-godateti-6807925dcc-484172868.us-east-1.elb.amazonaws.com
