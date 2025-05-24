@@ -82,7 +82,7 @@ Author: Vinay
 Problem 2:
 
 
-Here's a **Test Case Document** for the **System Health Monitoring Script**. It defines how to verify that the script functions correctly by simulating different system conditions.
+Here's a Test Case Document for the System Health Monitoring Script**. It defines how to verify that the script functions correctly by simulating different system conditions.
 
 ---
 
@@ -135,7 +135,7 @@ Dependencies:`awk`, `top`, `df`, `ps`, `free`, `grep`, `sed`
 
 Test cases for the `log_analyzer.sh` script:
 
-Understood! Here's a more **concise** version of the **final 2 test cases** without too much detail:
+Understood! Here's a more concise version of the final 2 test cases without too much detail:
 
 | **Test Case ID** | **Test Case Description**                              | Test Steps                                                                                         | Expected Output                                 | Status |
 | ---------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ---------- |
