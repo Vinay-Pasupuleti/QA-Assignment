@@ -65,3 +65,76 @@ Author: Vinay
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Problem 2:
+
+
+Here's a **Test Case Document** for the **System Health Monitoring Script**. It defines how to verify that the script functions correctly by simulating different system conditions.
+
+---
+
+## ✅ Test Case Document
+
+Document Title:** Test Cases for Linux System Health Monitoring Script
+Author:Vinay
+Script File: `system_health_monitor.sh`
+
+---
+
+### 📌 Overview
+
+The purpose of these test cases is to validate the behavior of the script under different system load conditions. The script checks:
+
+* CPU usage
+* Memory usage
+* Disk usage
+* Number of running processes
+
+Alerts should trigger only when a threshold is exceeded.
+
+---
+
+ 🔍 Test Cases
+
+| TC ID | Test Case Description                          | Input/Setup                                                  | Expected Output                                     | Pass Criteria                           |
+| ----- | ---------------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------- | --------------------------------------- |
+| TC01  | Normal usage – all metrics below threshold     | System in idle state                                         | No alert messages; just timestamp and divider       | Script runs without printing any alerts |
+| TC02  | High CPU usage                                 | Simulate with `stress` or `yes > /dev/null`                  | `ALERT: CPU usage is above 80%`                     | CPU alert is printed                    |
+| TC03  | High memory usage                              | Run a memory-heavy app or use `stress --vm 1 --vm-bytes 90%` | `ALERT: Memory usage is above 80%`                  | Memory alert is printed                 |
+| TC04  | High disk usage                                | Fill `/` partition above 80%                                 | `ALERT: Disk usage is above 80%`                    | Disk alert is printed                   |
+| TC05  | High process count                             | Run `for i in {1..200}; do sleep 60 & done`                  | `ALERT: Number of running processes is above 100`   | Process count alert is printed          |
+| TC06  | Multiple alerts                                | Trigger CPU + memory + disk high at once                     | Multiple alert messages                             | All appropriate alerts are printed      |
+| TC07  | Incorrect threshold values (e.g., non-numeric) | Modify script: `CPU_THRESHOLD=abc`                           | Script error or fails gracefully                    | Script exits or prints an error         |
+| TC08  | Check timestamp and formatting                 | Run script normally                                          | Shows `System health check at <date>` and separator | Timestamp and separator line appear     |
+| TC09  | Logging to file (optional enhancement)         | Redirect output to a log file                                | Output is stored in file                            | Log file contains expected messages     |
+| TC10  | Run from `cron` (optional)                     | Schedule via `crontab`                                       | Output appears in cron log or configured location   | Script executes as scheduled            |
+
+---
+
+ 🧪 Test Environment
+
+OS:Linux (Ubuntu, CentOS, etc.)
+Shell: Bash
+Permissions: Script should be executable (`chmod +x system_health_monitor.sh`)
+Dependencies:`awk`, `top`, `df`, `ps`, `free`, `grep`, `sed`
+
+
+
+
+
+
+
+
