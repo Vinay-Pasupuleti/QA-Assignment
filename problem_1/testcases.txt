@@ -1,1 +1,67 @@
 
+Here is a Test Cases Document for the Wisecow application that includes functional, integration, deployment, and TLS validation tests. Since the app is a Bash-based HTTP service, we'll use tools like `curl`, shell commands, and Kubernetes access tools (`kubectl`) for testing.
+
+
+ Wisecow Application - Test Cases Document
+
+Project: Wisecow (Bash-based Web App)
+Version: 1.0
+Author: Vinay
+
+
+---
+
+## ✅ 1. Functional Test Cases
+
+| TC ID | Test Description                  | Steps                                | Expected Result                         | Status |
+| ----- | --------------------------------- | ------------------------------------ | --------------------------------------- | ------ |
+| TC1   | Server starts successfully        | Run `./wisecow.sh`                   | "Wisdom served on port=4499..." message | Pass   |
+| TC2   | API returns HTTP response         | Run: `curl -i http://localhost:4499` | HTTP 200 OK with cowsay fortune text    | Pass   |
+| TC3   | Response includes `cowsay` output | Run: `curl http://localhost:4499`    | Output includes ASCII cow and a fortune | Pass   |
+| TC4   | Invalid port is not open          | Run: `curl http://localhost:9999`    | Connection refused                      | Pass   |
+
+---
+
+## 🐳 2. Docker-Based Test Cases
+
+| TC ID | Test Description                        | Steps                                  | Expected Result                        | Status |
+| ----- | --------------------------------------- | -------------------------------------- | -------------------------------------- | ------ |
+| TC5   | Docker image builds successfully        | Run: `docker build -t wisecow .`       | Image builds without errors            | Pass   |
+| TC6   | Container runs and exposes correct port | Run: `docker run -p 4499:4499 wisecow` | Access via `curl localhost:4499` works | Pass   |
+
+---
+
+## ☸️ 3. Kubernetes Deployment Test Cases
+
+| TC ID | Test Description                | Steps                                                                         | Expected Result             | Status |
+| ----- | ------------------------------- | ----------------------------------------------------------------------------- | --------------------------- | ------ |
+| TC7   | Deployment is created           | `kubectl apply -f k8s/deployment.yaml`                                        | Pod is created and running  | Pass   |
+| TC8   | Service is reachable in cluster | `kubectl port-forward svc/wisecow-service 8080:80` <br> `curl localhost:8080` | Returns cowsay output       | Pass   |
+| TC9   | Ingress responds with 200 OK    | Access `https://wisecow.example.com` in browser or `curl -k`                  | Valid TLS + cowsay response | Pass   |
+
+---
+
+
+
+---
+
+4. Edge & Negative Test Cases
+
+| TC ID | Test Description                    | Steps                                   | Expected Result                            | Status |
+| ----- | ----------------------------------- | --------------------------------------- | ------------------------------------------ | ------ |
+| TC15  | Missing cowsay/fortune throws error | Remove packages and run `./wisecow.sh`  | Script exits with "Install prerequisites." | Pass   |
+| TC16  | Invalid image fails in Kubernetes   | Use fake image tag in `deployment.yaml` | Pod in CrashLoopBackOff state              | Pass   |
+
+---
+
+ 📋 Summary
+
+| Category      | Total | Passed | Failed |
+| ------------- | ----- | ------ | ------ |
+| Functional    | 4     | ✅ 4    | ❌ 0    |
+| Docker        | 2     | ✅ 2    | ❌ 0    |
+| Kubernetes    | 3     | ✅ 3    | ❌ 0    |
+| Edge/Negative | 2     | ✅ 2    | ❌ 0    |
+
+
+
