@@ -133,6 +133,18 @@ Dependencies:`awk`, `top`, `df`, `ps`, `free`, `grep`, `sed`
 
 
 
+Test cases for the `log_analyzer.sh` script:
+
+Understood! Here's a more **concise** version of the **final 2 test cases** without too much detail:
+
+| **Test Case ID** | **Test Case Description**                              | Test Steps                                                                                         | Expected Output                                 | Status |
+| ---------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ---------- |
+| TC01       | Valid log file with multiple `404` errors              | 1. Use a log file with multiple `404` errors.<br>2. Run the script: `./log_analyzer.sh error_log.log`   | Script counts the number of `404` errors correctly. | Pass  |
+| TC02         | Log file with mixed status codes (`200`, `404`, `500`) | 1. Use a log file with various status codes.<br>2. Run the script: `./log_analyzer.sh status_codes.log` | Script counts only `404` errors.                    | Pass  |
+
+
+
+
 
 
 
